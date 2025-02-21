@@ -1,0 +1,64 @@
+{
+  "users": [
+    {
+      "id": "1dbb",
+      "name": "admin",
+      "email": "admin@gmail.com",
+      "password": "admin",
+      "tipo": "admin"
+    },
+    {
+      "id": "528b",
+      "name": "alina",
+      "email": "alina@gmail.com",
+      "password": "123",
+      "tipo": "user"
+    },
+    {
+      "id": "2cb9",
+      "name": "pepa",
+      "email": "pepa@gmail.com",
+      "password": "123",
+      "tipo": "user"
+    },
+    {
+      "id": "d3cf",
+      "name": "maria",
+      "email": "m@gmail.com",
+      "password": "123",
+      "tipo": "user"
+    }
+  ],
+  "productos": [
+    {
+      "id": "1",
+      "nombre": "Cactus",
+      "precio": 4,
+      "imagen": "./img/1.png"
+    },
+    {
+      "id": "2",
+      "nombre": "Donut",
+      "precio": 5,
+      "imagen": "./img/2.png"
+    },
+    {
+      "id": "3",
+      "nombre": "Gatos",
+      "precio": 6,
+      "imagen": "./img/3.png"
+    },
+    {
+      "id": "4",
+      "nombre": "Colores",
+      "precio": 7,
+      "imagen": "./img/4.png"
+    },
+    {
+      "id": 1739179267396,
+      "nombre": "Space",
+      "precio": "12",
+      "imagen": "https://www.happyrunnerthings.com/cdn/shop/files/calcetines-running-need-more-space-happy-runner-things-espacio.jpg?v=1702665132&width=493"
+    }
+  ]
+}

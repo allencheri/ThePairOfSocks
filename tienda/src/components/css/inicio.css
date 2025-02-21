@@ -1,0 +1,21 @@
+.imagen-fondo {
+    background-image: url('../../../public/img/socks-fondo.png');
+    background-size: cover; 
+    background-position: center; 
+    height: 30em; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+
+.card-inicio {
+    background-color: rgba(255, 255, 255, 0.315);
+    padding: 2em;
+    border-radius: 1em;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+
+
+
+

@@ -1,0 +1,31 @@
+.btn-primary {
+  background-color: #864ae7!important;
+  border: none!important;
+}
+
+.bg-primary {
+  background-color: #864ae7!important;
+}
+.card-catalogo:hover {
+  transform: scale(1.09);
+  transition: 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #6d3ce3;
+  transform: scale(1.1);
+}
+
+.modal-header {
+  border-bottom: none;
+}
+
+.modal-footer {
+  border-top: none;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
