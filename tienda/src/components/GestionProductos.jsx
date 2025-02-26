@@ -7,6 +7,7 @@ export const GestionProductos = () => {
     imagen: "",
   });
   const [productos, setProductos] = useState([]);
+  const [productoEditando, setProductoEditando] = useState(null); // Producto seleccionado para editar
   const [imagenCargada, setImagenCargada] = useState(false); // Para verificar si la imagen fue subida
 
   // Cargar productos al iniciar
@@ -29,20 +30,16 @@ export const GestionProductos = () => {
       })
         .then((response) => response.json())
         .then((data) => {
-          // Guardamos la ruta completa de la imagen
           setProducto((prev) => ({ ...prev, imagen: data.filename }));
-          setImagenCargada(true); // Marcamos que la imagen fue cargada
+          setImagenCargada(true);
         })
-        .catch((error) => {
-          console.error("Error al subir la imagen:", error);
-        });
+        .catch((error) => console.error("Error al subir la imagen:", error));
     }
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Verificamos que todos los campos estén completos y que la imagen haya sido cargada
     if (!producto.nombre || !producto.precio || !producto.imagen) {
       alert("Por favor, completa todos los campos");
       return;
@@ -62,7 +59,7 @@ export const GestionProductos = () => {
         setProductos([...productos, addedProduct]);
         alert("Producto agregado exitosamente");
         setProducto({ nombre: "", precio: "", imagen: "" });
-        setImagenCargada(false); // Resetear imagen cargada
+        setImagenCargada(false);
       } else {
         alert("Error al agregar producto");
       }
@@ -72,10 +69,53 @@ export const GestionProductos = () => {
     }
   };
 
+  const handleModificarProduct = (id) => {
+    const productoParaEditar = productos.find((prod) => prod.id === id);
+    setProductoEditando(productoParaEditar);
+    setProducto({
+      nombre: productoParaEditar.nombre,
+      precio: productoParaEditar.precio,
+      imagen: productoParaEditar.imagen,
+    });
+  };
+
+  const handleActualizarProducto = async (event) => {
+    event.preventDefault();
+
+    if (!producto.nombre || !producto.precio || !producto.imagen) {
+      alert("Por favor, completa todos los campos");
+      return;
+    }
+
+    try {
+      const response = await fetch(`http://localhost:3000/productos/${productoEditando.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(producto),
+      });
+
+      if (response.ok) {
+        const updatedProduct = await response.json();
+        setProductos(
+          productos.map((prod) => (prod.id === updatedProduct.id ? updatedProduct : prod))
+        );
+        alert("Producto actualizado exitosamente");
+        setProductoEditando(null);
+        setProducto({ nombre: "", precio: "", imagen: "" });
+        setImagenCargada(false);
+      } else {
+        alert("Error al actualizar producto");
+      }
+    } catch (error) {
+      console.error("Error al actualizar producto:", error);
+      alert("Error al actualizar producto");
+    }
+  };
+
   const handleDeleteProduct = async (id) => {
     try {
-      const imagen = productos.find((prod) => prod.id === id);
-      console.log(imagen);
       const response = await fetch(`http://localhost:3000/productos/${id}`, {
         method: "DELETE",
       });
@@ -83,10 +123,6 @@ export const GestionProductos = () => {
       if (response.ok) {
         setProductos(productos.filter((prod) => prod.id !== id));
         alert("Producto eliminado");
-
-        const response = await fetch(`http://localhost:5000/upload/${imagen.imagen}`, {
-          method: "DELETE",
-        });
       } else {
         alert("Error al eliminar producto");
       }
@@ -100,39 +136,29 @@ export const GestionProductos = () => {
     <div className="container my-5">
       <h1 className="text-center mb-4">Gestión de Productos</h1>
       <div className="card p-4 shadow-sm">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={productoEditando ? handleActualizarProducto : handleSubmit}>
           <div className="mb-3">
-            <label htmlFor="nombre" className="form-label">
-              Nombre
-            </label>
+            <label htmlFor="nombre" className="form-label">Nombre</label>
             <input
               type="text"
               id="nombre"
               className="form-control"
               value={producto.nombre}
-              onChange={(e) =>
-                setProducto({ ...producto, nombre: e.target.value })
-              }
+              onChange={(e) => setProducto({ ...producto, nombre: e.target.value })}
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="precio" className="form-label">
-              Precio
-            </label>
+            <label htmlFor="precio" className="form-label">Precio</label>
             <input
               type="number"
               id="precio"
               className="form-control"
               value={producto.precio}
-              onChange={(e) =>
-                setProducto({ ...producto, precio: e.target.value })
-              }
+              onChange={(e) => setProducto({ ...producto, precio: e.target.value })}
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="imagen" className="form-label">
-              Imagen
-            </label>
+            <label htmlFor="imagen" className="form-label">Imagen</label>
             <input
               type="file"
               id="imagen"
@@ -141,7 +167,7 @@ export const GestionProductos = () => {
             />
           </div>
           <button type="submit" className="btn btn-primary">
-            Guardar
+            {productoEditando ? "Actualizar Producto" : "Guardar Producto"}
           </button>
         </form>
 
@@ -152,7 +178,8 @@ export const GestionProductos = () => {
               <th>Nombre</th>
               <th>Precio</th>
               <th>Imagen</th>
-              <th>Acciones</th>
+              <th>Eliminar</th>
+              <th>Modificar</th>
             </tr>
           </thead>
           <tbody>
@@ -176,7 +203,15 @@ export const GestionProductos = () => {
                     className="btn btn-danger"
                     onClick={() => handleDeleteProduct(prod.id)}
                   >
-                    Eliminar
+                    <i className="fa fa-trash"></i>
+                  </button>
+                </td>
+                <td>
+                  <button
+                    className="btn btn-warning"
+                    onClick={() => handleModificarProduct(prod.id)}
+                  >
+                    <i className="fa fa-edit"></i>
                   </button>
                 </td>
               </tr>

@@ -28,4 +28,9 @@
   position: relative;
   border-radius: 10px;
 }
+.prod-img {
+  height: 20em;
+  width: auto;
+  
+}
 

@@ -107,7 +107,7 @@ export const Catalogo = () => {
         {productos.map((producto) => (
           <div className="col-md-3 mb-4" key={producto.id}>
             <div className="card card-catalogo border-0 shadow">
-              <img src={"http://localhost:5000/img/" + producto.imagen} alt="Vista previa"/> 
+              <img src={"http://localhost:5000/img/" + producto.imagen} alt="Vista previa" className='prod-img'/> 
               <div className="card-body text-center">
                 <h5 className="card-title">{producto.nombre}</h5>
                 <p className="card-text">{producto.precio} €</p>

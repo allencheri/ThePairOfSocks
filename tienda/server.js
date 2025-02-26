@@ -1,10 +1,10 @@
-const express = require('express');
+const express = require('express'); //servidor web
 const jsonServer = require('json-server');
-const multer = require('multer');
-const path = require('path');
-const fs = require('fs');
-const morgan = require('morgan');
-const cors = require('cors');
+const multer = require('multer'); //middleware para subir archivos
+const path = require('path'); //para obtener la ruta de los archivos
+const fs = require('fs'); //para crear y eliminar archivos
+const morgan = require('morgan'); //middleware para registrar las peticiones en el servidor
+const cors = require('cors'); //middleware para permitir las peticiones desde otros dominios
 
 
 const app = express();

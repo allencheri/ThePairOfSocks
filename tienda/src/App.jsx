@@ -8,6 +8,7 @@ import { Catalogo } from './components/Catalogo';
 import { Compra } from './components/Compra';
 import { Contacto } from './components/Contacto';
 import { GestionProductos } from './components/GestionProductos';
+import { GestionUsuarios } from './components/GestionUsuarios';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path="/compra" element={<Compra />} />
         <Route path="/contacto" element={<Contacto />} />
         <Route path="/gestion-productos" element={<GestionProductos />} />
+        <Route path="/gestion-usuarios" element={<GestionUsuarios />} />
       </Routes>
       <Footer className="footer" />
     </Router>

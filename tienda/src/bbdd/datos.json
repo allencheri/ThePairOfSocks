@@ -31,12 +31,6 @@
   ],
   "productos": [
     {
-      "nombre": "Preocupación de donut",
-      "precio": "11",
-      "imagen": "1740557797784-donut.png",
-      "id": 1740557798827
-    },
-    {
       "nombre": "Pear",
       "precio": "13",
       "imagen": "1740559175996-pear.webp",
@@ -44,7 +38,7 @@
     },
     {
       "nombre": "Tortuga",
-      "precio": "12",
+      "precio": "13",
       "imagen": "1740559186229-tortuga.webp",
       "id": 1740559187112
     },
@@ -55,7 +49,7 @@
       "id": 1740559213451
     },
     {
-      "nombre": "Calcetines del día de la joroba",
+      "nombre": "Camello",
       "precio": "9",
       "imagen": "1740559292411-d.webp",
       "id": 1740559293225
@@ -65,6 +59,24 @@
       "precio": "12",
       "imagen": "1740559314613-fideos.webp",
       "id": 1740559322395
+    },
+    {
+      "nombre": "Papper",
+      "precio": "13",
+      "imagen": "1740569634527-paper.webp",
+      "id": 1740569659652
+    },
+    {
+      "nombre": "Macarrones",
+      "precio": "10",
+      "imagen": "1740570404618-macarrones.webp",
+      "id": 1740570405631
+    },
+    {
+      "nombre": "Corgi",
+      "precio": "9",
+      "imagen": "1740570435712-corgi.jpg",
+      "id": 1740570436646
     }
   ]
 }

@@ -1,4 +1,4 @@
-
+admin
 .navbar {
     background-color: #333; 
     border-bottom: 2px solid #444; 
@@ -14,13 +14,13 @@
 
 
 .navbar-brand {
-    font-size: 1.8rem;
-    font-weight: 700;
-    letter-spacing: 0.2rem;
-    color: #fff !important;
-    transition: color 0.3s ease;
-    text-align: center;
-}
+    font-family: 'Poppins', sans-serif; 
+    font-size: 1.5rem; 
+    font-weight: 700; 
+    letter-spacing: 1px; 
+    color: #ffffff; 
+    transition: color 0.3s ease; 
+  }
 
 
 .navbar-brand:hover {
@@ -72,3 +72,18 @@
 .navbar-nav .nav-link .bi-person-circle {
     font-size: 1.6rem;
 }
+
+.text-primary {
+    color: #6f42c1 !important;
+}
+.text-warning {
+    font-weight: bold; 
+  }
+
+.navbar-logo-container {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+
