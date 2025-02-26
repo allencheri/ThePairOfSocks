@@ -5,9 +5,8 @@ export const Registro = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [tipo, setTipo] = useState("");
+  const [tipo, setTipo] = useState("usuario"); // Valor por defecto "usuario"
   const [users, setUsers] = useState([]);
-
 
   const getUsers = async () => {
     try {
@@ -19,7 +18,6 @@ export const Registro = () => {
     }
   };
   getUsers();
-
 
   const registro = async (event) => {
     event.preventDefault();
@@ -56,7 +54,7 @@ export const Registro = () => {
 
       alert("Registro exitoso");
       limpiarForm();
-      window.location.href = "/";
+      window.location.href = "/login";
     } catch (error) {
       alert("Hubo un error al registrar");
       console.error(error);
@@ -128,22 +126,6 @@ export const Registro = () => {
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                 />
-              </div>
-              <div>
-                <label htmlFor="tipo" className="form-label fw-semibold">
-                  Tipo de usuario
-                </label>
-                <select
-                  className="form-select rounded-3 mb-4"
-                  id="tipo"
-                  value={tipo}
-                  onChange={(e) => setTipo(e.target.value)}
-                >
-                  <option value="" disabled>
-                    Selecciona un tipo de usuario</option>
-                  <option value="user">Usuario</option>
-                  <option value="admin">Administrador</option>
-                </select>
               </div>
               <button type="submit" className="btn btn-dark w-100 rounded-3 fw-semibold">
                 Registrar

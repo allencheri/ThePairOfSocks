@@ -75,7 +75,7 @@ export const NavBar = () => {
             )}
             {usuarioLogueado.tipo === "admin" && (
               <li className="nav-item">
-                <Link to="/gestion-usuario" className="nav-link text-light me-5">
+                <Link to="/gestion-usuarios" className="nav-link text-light">
                   Gestión usuarios
                 </Link>
               </li>

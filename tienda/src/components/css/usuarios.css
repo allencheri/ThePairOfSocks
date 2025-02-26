@@ -1,0 +1,169 @@
+.usuariosWrapper {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #ffffff; /* Blanco */
+}
+
+.tituloGestion {
+  color: #864ae7; /* Violeta oscuro */
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.tablaContenedor {
+  background: #ffffff; /* Blanco */
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Negro con transparencia */
+  overflow: hidden;
+}
+
+.usuariosTabla {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tablaEncabezado {
+  background: #864ae7; /* Violeta oscuro */
+  color: #ffffff; /* Blanco */
+}
+
+.tablaEncabezado th {
+  padding: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.filaUsuario:hover {
+  background-color: #F8F0FF; /* Violeta muy claro */
+  transition: background-color 0.2s;
+}
+
+.celdaID, .celdaNombre, .celdaEmail, .celdaTipo, .celdaModificar, .celdaEliminar {
+  padding: 1rem;
+  text-align: center;
+  color: #000000; /* Negro */
+}
+
+.botonEditar {
+  background: #ffbb00; /* Violeta medio */
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  color: #000000; /* Blanco */
+  transition: all 0.3s;
+}
+
+.botonEditar:hover {
+  background: #9400D3; /* Violeta más claro */
+  transform: translateY(-2px);
+}
+
+.botonEliminar {
+  background: #b92222; /* Negro */
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  color: #ffffff; /* Blanco */
+  transition: all 0.3s;
+}
+
+.botonEliminar:hover {
+  background: #333333; /* Negro más claro */
+  transform: translateY(-2px);
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* Negro con transparencia */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContenido {
+  background: #ffffff; /* Blanco */
+  border-radius: 10px;
+  width: 90%;
+  max-width: 500px;
+  animation: slideIn 0.3s ease-out;
+}
+
+.modalCabecera {
+  background: #864ae7; /* Violeta oscuro */
+  color: #ffffff; /* Blanco */
+  padding: 1rem 1.5rem;
+  border-radius: 10px 10px 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.botonCerrar {
+  background: none;
+  border: none;
+  color: #ffffff; /* Blanco */
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.modalCuerpo {
+  padding: 1.5rem;
+}
+
+.campoFormulario {
+  margin-bottom: 1.5rem;
+}
+
+.etiquetaCampo {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #000000; /* Negro */
+  font-weight: 500;
+}
+
+.inputFormulario, .selectorTipo {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #864ae7; /* Violeta medio */
+  border-radius: 5px;
+  font-size: 1rem;
+  background: #ffffff; /* Blanco */
+  color: #000000; /* Negro */
+}
+
+.inputFormulario:focus, .selectorTipo:focus {
+  outline: none;
+  border-color: #9400D3; /* Violeta más claro */
+  box-shadow: 0 0 5px rgba(148, 0, 211, 0.3);
+}
+
+.botonActualizar {
+  background: #864ae7; /* Violeta medio */
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  color: #ffffff; /* Blanco */
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.botonActualizar:hover {
+  background: #9400D3; /* Violeta más claro */
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

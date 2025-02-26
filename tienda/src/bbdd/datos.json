@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "id": "1dbb",
+      "id": "zihmjB8",
       "name": "admin",
       "email": "admin@gmail.com",
       "password": "admin",
@@ -27,6 +27,13 @@
       "email": "m@gmail.com",
       "password": "123",
       "tipo": "user"
+    },
+    {
+      "name": "maria",
+      "email": "54thfg@hfghgf.fh",
+      "password": "1234",
+      "tipo": "usuario",
+      "id": "8nnBF4O"
     }
   ],
   "productos": [
