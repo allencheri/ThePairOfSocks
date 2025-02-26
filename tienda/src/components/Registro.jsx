@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 export const Registro = () => {
   const [name, setName] = useState("");
@@ -11,7 +11,7 @@ export const Registro = () => {
 
   const getUsers = async () => {
     try {
-      const response = await fetch("http://localhost:5000/users");
+      const response = await fetch("http://localhost:3000/users");
       const user = await response.json();
       setUsers(user);
     } catch (error) {
@@ -42,7 +42,7 @@ export const Registro = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/users", {
+      const response = await fetch("http://localhost:3000/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

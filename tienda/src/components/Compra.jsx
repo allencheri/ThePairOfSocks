@@ -11,7 +11,7 @@ export const Compra = () => {
     const usuario = JSON.parse(localStorage.getItem("usuario"));
 
     useEffect(() => {
-        fetch("http://localhost:5000/productos")
+        fetch("http://localhost:3000/productos")
             .then((response) => response.json())
             .then((data) => setProductos(data))
             .catch((error) => console.error("Error al cargar los productos: ", error));

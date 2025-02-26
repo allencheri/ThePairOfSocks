@@ -31,34 +31,40 @@
   ],
   "productos": [
     {
-      "id": "1",
-      "nombre": "Cactus",
-      "precio": 4,
-      "imagen": "./img/1.png"
+      "nombre": "Preocupación de donut",
+      "precio": "11",
+      "imagen": "1740557797784-donut.png",
+      "id": 1740557798827
     },
     {
-      "id": "2",
-      "nombre": "Donut",
-      "precio": 5,
-      "imagen": "./img/2.png"
+      "nombre": "Pear",
+      "precio": "13",
+      "imagen": "1740559175996-pear.webp",
+      "id": 1740559176916
     },
     {
-      "id": "3",
-      "nombre": "Gatos",
-      "precio": 6,
-      "imagen": "./img/3.png"
-    },
-    {
-      "id": "4",
-      "nombre": "Colores",
-      "precio": 7,
-      "imagen": "./img/4.png"
-    },
-    {
-      "id": 1739179267396,
-      "nombre": "Space",
+      "nombre": "Tortuga",
       "precio": "12",
-      "imagen": "https://www.happyrunnerthings.com/cdn/shop/files/calcetines-running-need-more-space-happy-runner-things-espacio.jpg?v=1702665132&width=493"
+      "imagen": "1740559186229-tortuga.webp",
+      "id": 1740559187112
+    },
+    {
+      "nombre": "Ajolote",
+      "precio": "14",
+      "imagen": "1740559205315-ajolote.jpg",
+      "id": 1740559213451
+    },
+    {
+      "nombre": "Calcetines del día de la joroba",
+      "precio": "9",
+      "imagen": "1740559292411-d.webp",
+      "id": 1740559293225
+    },
+    {
+      "nombre": "Fideos",
+      "precio": "12",
+      "imagen": "1740559314613-fideos.webp",
+      "id": 1740559322395
     }
   ]
 }

@@ -12,7 +12,7 @@ export const Login = () => {
 
   const login = async (data) => {
     try {
-      const response = await fetch("http://localhost:5000/users");
+      const response = await fetch("http://localhost:3000/users");
       const usuarios = await response.json();
       const usuario = usuarios.find((user) => user.email === data.email);
 

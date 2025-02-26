@@ -19,7 +19,7 @@ export const Catalogo = () => {
     }
 
     const getProductos = async () => {
-      const response = await fetch('http://localhost:5000/productos');
+      const response = await fetch('http://localhost:3000/productos');
       const productos = await response.json();
       setProductos(productos);
       const cantidadesIniciales = productos.reduce((acc, producto) => {
@@ -107,7 +107,7 @@ export const Catalogo = () => {
         {productos.map((producto) => (
           <div className="col-md-3 mb-4" key={producto.id}>
             <div className="card card-catalogo border-0 shadow">
-              <img src={producto.imagen} className="card-img-top" alt={producto.nombre} />
+              <img src={"http://localhost:5000/img/" + producto.imagen} alt="Vista previa"/> 
               <div className="card-body text-center">
                 <h5 className="card-title">{producto.nombre}</h5>
                 <p className="card-text">{producto.precio} €</p>
