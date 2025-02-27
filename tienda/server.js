@@ -6,22 +6,28 @@ const fs = require('fs'); //para crear y eliminar archivos
 const morgan = require('morgan'); //middleware para registrar las peticiones en el servidor
 const cors = require('cors'); //middleware para permitir las peticiones desde otros dominios
 
-
+//crear el servidor
 const app = express();
+
+//ponemos ruta de los archivos
 const router = jsonServer.router('./src/bbdd/datos.json');
+
+//ruta de subir archivos
 const upload = multer({ dest: 'public/img/' });
 
+//configuracion de CORS
 app.use(cors({
     origin: '*',
     methods: 'GET,PUT,POST,DELETE',
     allowedHeaders: 'Content-Type',
 }));
-// Middleware
+
+//configuracion
 app.use(morgan('dev'));
 app.use(express.json());
 app.use('/img', express.static(path.join(__dirname, 'public/img')));
 
-// Subir imágenes
+// Metodo post para subir imágenes
 app.post('/upload', upload.single('image'), (req, res) => {
     if (!req.file) {
         return res.status(400).json({ error: 'No se envió ninguna imagen' });
@@ -35,6 +41,8 @@ app.post('/upload', upload.single('image'), (req, res) => {
     res.json({ message: 'Imagen subida exitosamente', filename: `${filename}` });
 });
 
+
+// Metodo delete para eliminar imágenes
 app.delete('/delete/:filename', (req, res) => {
     const filename = req.params.filename;
     const filepath = `public/img/${filename}`;      
@@ -59,5 +67,5 @@ app.use(router);
 
 // Iniciar el servidor
 app.listen(5000, () => {
-    console.log('✅ Servidor corriendo en http://localhost:5000');
+    console.log('Servidor corriendo en http://localhost:5000');
 });

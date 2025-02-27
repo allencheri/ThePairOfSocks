@@ -19,10 +19,14 @@ export const GestionProductos = () => {
       .catch((error) => console.error("Error al cargar productos:", error));
   }, []);
 
+
+  // Gestionamos el cambio de archivo
   const handleImageChange = (event) => {
     setFile(event.target.files[0]);
   };
 
+
+  // Subimos la imagen seleccionada
   const subirImg = async () => {
     if (file) {
       const formData = new FormData();
@@ -43,6 +47,7 @@ export const GestionProductos = () => {
     }
   };
 
+  // Metodo para guardar un producto
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -81,6 +86,8 @@ export const GestionProductos = () => {
     }
   };
 
+
+  // Metodo para modificar un producto
   const handleModificarProduct = (id) => {
     const productoParaEditar = productos.find((prod) => prod.id === id);
     setProductoEditando(productoParaEditar);
@@ -91,6 +98,8 @@ export const GestionProductos = () => {
     });
   };
 
+
+  // Metodo para actualizar un producto
   const handleActualizarProducto = async (event) => {
     event.preventDefault();
 
@@ -131,6 +140,8 @@ export const GestionProductos = () => {
     }
   };
 
+
+  // Metodo para eliminar un producto
   const handleDeleteProduct = async (id, imagenEliminar) => {
     console.log(id);
     console.log(imagenEliminar);
