@@ -5,7 +5,7 @@ export const Contacto = () => {
     <div className="container py-5">
       <div className="row">
         <div className="col-md-6">
-          <h1 className="display-4 mb-4">Contacto</h1>
+          <h1 className="display-4 mb-4 text-primary">Contacto</h1>
           <h2 className="h4 mb-3">Información de la tienda</h2>
           <p className="mb-1">Avenida de Galicia, 101,</p>
           <p className="mb-1">36216 Vigo, Pontevedra</p>
@@ -17,7 +17,7 @@ export const Contacto = () => {
 
         <div className="col-md-6">
           <div className="card shadow-sm border-0 rounded-lg p-4">
-            <h3 className="h5 mb-4">Formulario de contacto</h3>
+            <h3 className="h5 mb-4 ">Formulario de contacto</h3>
             <form>
               <div className="mb-3">
                 <label htmlFor="nombre" className="form-label">Nombre</label>

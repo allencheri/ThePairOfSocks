@@ -35,7 +35,7 @@ app.post('/upload', upload.single('image'), (req, res) => {
     res.json({ message: 'Imagen subida exitosamente', filename: `${filename}` });
 });
 
-app.delete('/upload/:filename', (req, res) => {
+app.delete('/delete/:filename', (req, res) => {
     const filename = req.params.filename;
     const filepath = `public/img/${filename}`;      
 
@@ -44,8 +44,13 @@ app.delete('/upload/:filename', (req, res) => {
             return res.status(404).json({ error: 'No se encontró la imagen' });
         }
 
-        fs.unlinkSync(filepath);
-        res.json({ message: 'Imagen eliminada exitosamente' });
+        fs.unlink(filepath, (err) => {
+            if(err) {
+                return res.status(500).json({ error: 'Error al eliminar la imagen' });
+            }
+            res.json({ message: 'Imagen eliminada exitosamente' });
+        });
+        
     });
 });
 

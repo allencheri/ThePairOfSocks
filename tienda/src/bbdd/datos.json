@@ -1,11 +1,11 @@
 {
   "users": [
     {
-      "id": "zihmjB8",
       "name": "admin",
       "email": "admin@gmail.com",
       "password": "admin",
-      "tipo": "admin"
+      "tipo": "admin",
+      "id": "zihmjB8"
     },
     {
       "id": "528b",
@@ -38,12 +38,6 @@
   ],
   "productos": [
     {
-      "nombre": "Pear",
-      "precio": "13",
-      "imagen": "1740559175996-pear.webp",
-      "id": 1740559176916
-    },
-    {
       "nombre": "Tortuga",
       "precio": "13",
       "imagen": "1740559186229-tortuga.webp",
@@ -75,15 +69,15 @@
     },
     {
       "nombre": "Macarrones",
-      "precio": "10",
-      "imagen": "1740570404618-macarrones.webp",
-      "id": 1740570405631
+      "precio": "12",
+      "imagen": "1740642981042-macarrones.webp",
+      "id": 1740642983590
     },
     {
-      "nombre": "Corgi",
+      "nombre": "Pear",
       "precio": "9",
-      "imagen": "1740570435712-corgi.jpg",
-      "id": 1740570436646
+      "imagen": "1740642995141-pear.webp",
+      "id": 1740642996093
     }
   ]
 }

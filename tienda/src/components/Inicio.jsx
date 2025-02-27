@@ -88,10 +88,11 @@ export const Inicio = () => {
                     {[1, 2, 3, 4, 5].map((star) => (
                       <i
                         key={star}
-                        className={`fa${
-                          star <= valoracion ? "s" : "r"
+                        className={`fa-${
+                          star <= valoracion ? "solid" : "regular"
                         } fa-star fs-4 text-warning star-hover`}
                         onClick={() => setValoracion(star)}
+                        style={{ cursor: "pointer" }}
                       ></i>
                     ))}
                   </div>

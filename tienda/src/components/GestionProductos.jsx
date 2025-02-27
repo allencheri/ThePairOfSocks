@@ -9,6 +9,7 @@ export const GestionProductos = () => {
   const [productos, setProductos] = useState([]);
   const [productoEditando, setProductoEditando] = useState(null); // Producto seleccionado para editar
   const [imagenCargada, setImagenCargada] = useState(false); // Para verificar si la imagen fue subida
+  const [file, setFile] = useState(null);
 
   // Cargar productos al iniciar
   useEffect(() => {
@@ -19,33 +20,44 @@ export const GestionProductos = () => {
   }, []);
 
   const handleImageChange = (event) => {
-    const file = event.target.files[0];
+    setFile(event.target.files[0]);
+  };
+
+  const subirImg = async () => {
     if (file) {
       const formData = new FormData();
       formData.append("image", file);
 
-      fetch("http://localhost:5000/upload", {
-        method: "POST",
-        body: formData,
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          setProducto((prev) => ({ ...prev, imagen: data.filename }));
-          setImagenCargada(true);
-        })
-        .catch((error) => console.error("Error al subir la imagen:", error));
+      try {
+        const response = await fetch("http://localhost:5000/upload", {
+          method: "POST",
+          body: formData,
+        });
+
+        const data = await response.json();
+        console.log("Archivo subido", data);
+        return data.filename;
+      } catch (error) {
+        console.error("Error al subir la imagen:", error);
+      }
     }
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (!producto.nombre || !producto.precio || !producto.imagen) {
+    if (!producto.nombre || !producto.precio) {
       alert("Por favor, completa todos los campos");
       return;
     }
 
-    const nuevoProducto = { ...producto, id: Date.now() };
+    const file = await subirImg();
+
+    const productoConImg = {
+      ...producto,
+      imagen: file,
+    };
+    const nuevoProducto = { ...productoConImg, id: Date.now() };
 
     try {
       const response = await fetch("http://localhost:3000/productos", {
@@ -88,18 +100,23 @@ export const GestionProductos = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:3000/productos/${productoEditando.id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(producto),
-      });
+      const response = await fetch(
+        `http://localhost:3000/productos/${productoEditando.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(producto),
+        }
+      );
 
       if (response.ok) {
         const updatedProduct = await response.json();
         setProductos(
-          productos.map((prod) => (prod.id === updatedProduct.id ? updatedProduct : prod))
+          productos.map((prod) =>
+            prod.id === updatedProduct.id ? updatedProduct : prod
+          )
         );
         alert("Producto actualizado exitosamente");
         setProductoEditando(null);
@@ -114,8 +131,22 @@ export const GestionProductos = () => {
     }
   };
 
-  const handleDeleteProduct = async (id) => {
+  const handleDeleteProduct = async (id, imagenEliminar) => {
+    console.log(id);
+    console.log(imagenEliminar);
     try {
+      const responceImg = await fetch(
+        `http://localhost:5000/delete/${imagenEliminar}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      if (!responceImg.ok) {
+        alert("Error al eliminar imagen");
+        return;
+      }
+
       const response = await fetch(`http://localhost:3000/productos/${id}`, {
         method: "DELETE",
       });
@@ -134,31 +165,43 @@ export const GestionProductos = () => {
 
   return (
     <div className="container my-5">
-      <h1 className="text-center mb-4">Gestión de Productos</h1>
+      <h1 className="text-center mb-4 tituloGestion">Gestión de Productos</h1>
       <div className="card p-4 shadow-sm">
-        <form onSubmit={productoEditando ? handleActualizarProducto : handleSubmit}>
+        <form
+          onSubmit={productoEditando ? handleActualizarProducto : handleSubmit}
+        >
           <div className="mb-3">
-            <label htmlFor="nombre" className="form-label">Nombre</label>
+            <label htmlFor="nombre" className="form-label">
+              Nombre
+            </label>
             <input
               type="text"
               id="nombre"
               className="form-control"
               value={producto.nombre}
-              onChange={(e) => setProducto({ ...producto, nombre: e.target.value })}
+              onChange={(e) =>
+                setProducto({ ...producto, nombre: e.target.value })
+              }
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="precio" className="form-label">Precio</label>
+            <label htmlFor="precio" className="form-label">
+              Precio
+            </label>
             <input
               type="number"
               id="precio"
               className="form-control"
               value={producto.precio}
-              onChange={(e) => setProducto({ ...producto, precio: e.target.value })}
+              onChange={(e) =>
+                setProducto({ ...producto, precio: e.target.value })
+              }
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="imagen" className="form-label">Imagen</label>
+            <label htmlFor="imagen" className="form-label">
+              Imagen
+            </label>
             <input
               type="file"
               id="imagen"
@@ -201,7 +244,7 @@ export const GestionProductos = () => {
                 <td>
                   <button
                     className="btn btn-danger"
-                    onClick={() => handleDeleteProduct(prod.id)}
+                    onClick={() => handleDeleteProduct(prod.id, prod.imagen)}
                   >
                     <i className="fa fa-trash"></i>
                   </button>

@@ -21,6 +21,14 @@
   z-index: 1;
 }
 
+.fa-solid {
+  color: #ffc107 !important; 
+}
+
+.fa-regular {
+  color: #d8e0e9 !important; 
+}
+
 .card-inicio {
   background-color: rgba(255, 255, 255, 0.55);
   backdrop-filter: blur(15px);
@@ -121,14 +129,7 @@ p.lead {
   outline: none;
 }
 
-.star-hover {
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
 
-.star-hover:hover {
-  transform: scale(1.2);
-}
 
 .resenas-list {
   max-width: 800px;
