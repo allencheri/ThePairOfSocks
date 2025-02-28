@@ -3,7 +3,7 @@
     {
       "name": "admin",
       "email": "admin@gmail.com",
-      "password": "admin",
+      "password": "123",
       "tipo": "admin",
       "id": "zihmjB8"
     },
@@ -22,13 +22,6 @@
       "tipo": "user"
     },
     {
-      "name": "felipe",
-      "email": "felipe@felipe.com",
-      "password": "1234",
-      "tipo": "admin",
-      "id": "XFVZOgT"
-    },
-    {
       "name": "Juan",
       "email": "juan@gmail.com",
       "password": "123",
@@ -45,46 +38,94 @@
   ],
   "productos": [
     {
-      "nombre": "Tortuga",
-      "precio": "13",
-      "imagen": "1740559186229-tortuga.webp",
-      "id": 1740559187112
+      "nombre": "Gatos",
+      "precio": "9.10",
+      "imagen": "1740732211225-gatos.webp",
+      "descripcion": "Calcetines coloridos con estampado de gatos en diversas poses, perfectos para los amantes de los felinos.",
+      "color": "Multicolor",
+      "talla": "Única (35-41 EU)",
+      "material": "80% Algodón, 17% Poliéster, 3% Elastano",
+      "id": "2gf6"
     },
     {
-      "nombre": "Ajolote",
-      "precio": "14",
-      "imagen": "1740559205315-ajolote.jpg",
-      "id": 1740559213451
+      "nombre": "Frutas",
+      "precio": "8.65",
+      "imagen": "1740732236081-frutas.webp",
+      "descripcion": "Calcetines vibrantes con estampados de frutas tropicales como piñas y sandías.",
+      "color": "Amarillo y Rosa",
+      "talla": "Única (35-41 EU)",
+      "material": "75% Algodón, 20% Poliéster, 5% Elastano",
+      "id": "4hj2"
     },
     {
-      "nombre": "Camello",
-      "precio": "9",
-      "imagen": "1740559292411-d.webp",
-      "id": 1740559293225
+      "nombre": "Perros",
+      "precio": "10.01",
+      "imagen": "1740732249055-perro.webp",
+      "descripcion": "Divertidos calcetines que muestran perros realizando trucos en patineta.",
+      "color": "Gris y Azul",
+      "talla": "Única (35-41 EU)",
+      "material": "80% Algodón, 15% Poliéster, 5% Elastano",
+      "id": "7k1a"
     },
     {
-      "nombre": "Fideos",
-      "precio": "12",
-      "imagen": "1740559314613-fideos.webp",
-      "id": 1740559322395
+      "nombre": "Unicornios",
+      "precio": "9.56",
+      "imagen": "1740732261148-unicornios.webp",
+      "descripcion": "Calcetines encantadores con unicornios y arcoíris, perfectos para añadir magia a tu día.",
+      "color": "Rosa y Morado",
+      "talla": "Única (35-41 EU)",
+      "material": "78% Algodón, 19% Poliéster, 3% Elastano",
+      "id": "9d3h"
     },
     {
-      "nombre": "Papper",
-      "precio": "13",
-      "imagen": "1740569634527-paper.webp",
-      "id": 1740569659652
+      "nombre": "Aguacates",
+      "precio": "8.19",
+      "imagen": "1740732283493-aguacates.webp",
+      "descripcion": "Calcetines con divertidos aguacates sonrientes, ideales para los amantes de esta fruta.",
+      "color": "Verde y Amarillo",
+      "talla": "Única (35-41 EU)",
+      "material": "77% Algodón, 20% Poliéster, 3% Elastano",
+      "id": "g8b4"
     },
     {
-      "nombre": "Macarrones",
-      "precio": "12",
-      "imagen": "1740642981042-macarrones.webp",
-      "id": 1740642983590
+      "nombre": "Flamencos",
+      "precio": "9.10",
+      "imagen": "1740732291009-flamencos.webp",
+      "descripcion": "Calcetines con estampado de flamencos en diferentes posturas, aportando elegancia y color.",
+      "color": "Rosa y Azul",
+      "talla": "Única (35-41 EU)",
+      "material": "75% Algodón, 22% Poliéster, 3% Elastano",
+      "id": "3r5k"
     },
     {
-      "nombre": "Pear",
-      "precio": "9",
-      "imagen": "1740642995141-pear.webp",
-      "id": 1740642996093
+      "nombre": "Pizza",
+      "precio": "10.47",
+      "imagen": "1740732304973-pizza.webp",
+      "descripcion": "Divertidos calcetines que combinan imágenes de pizza y símbolos de amor.",
+      "color": "Rojo y Amarillo",
+      "talla": "Única (35-41 EU)",
+      "material": "80% Algodón, 17% Poliéster, 3% Elastano",
+      "id": "v7p9"
+    },
+    {
+      "nombre": "Llamas",
+      "precio": "9.10",
+      "imagen": "1740732316839-llamas.webp",
+      "descripcion": "Calcetines coloridos con llamas adornadas para festividades, añadiendo alegría a tu atuendo.",
+      "color": "Blanco y Multicolor",
+      "talla": "Única (35-41 EU)",
+      "material": "78% Algodón, 19% Poliéster, 3% Elastano",
+      "id": "z9o1"
+    },
+    {
+      "nombre": "Arte",
+      "precio": "10.92",
+      "imagen": "1740732323354-arte.webp",
+      "descripcion": "Calcetines inspirados en las obras maestras de Van Gogh, perfectos para los amantes del arte.",
+      "color": "Azul y Amarillo",
+      "talla": "Única (35-41 EU)",
+      "material": "70% Algodón, 25% Poliéster, 5% Elastano",
+      "id": "8t4e"
     }
   ]
 }

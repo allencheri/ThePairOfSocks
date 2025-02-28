@@ -57,16 +57,7 @@ export const NavBar = () => {
                 Catálogo
               </Link>
             </li>
-            {usuarioLogueado && (
-              <li className="nav-item">
-                <Link
-                  to="/compra"
-                  className="nav-link text-light custom-nav-link"
-                >
-                  Comprar
-                </Link>
-              </li>
-            )}
+
             <li className="nav-item">
               <Link
                 to="/contacto"

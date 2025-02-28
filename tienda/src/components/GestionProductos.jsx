@@ -5,6 +5,10 @@ export const GestionProductos = () => {
     nombre: "",
     precio: "",
     imagen: "",
+    descripcion: "",
+    color: "",
+    talla: "",
+    material: "",
   });
   const [productos, setProductos] = useState([]);
   const [productoEditando, setProductoEditando] = useState(null); // Producto seleccionado para editar
@@ -15,23 +19,27 @@ export const GestionProductos = () => {
   useEffect(() => {
     fetch("http://localhost:3000/productos")
       .then((response) => response.json())
-      .then((data) => setProductos(data))
+      .then((data) => {
+        if (Array.isArray(data)) {
+          setProductos(data);
+        } else {
+          console.error("Datos no válidos recibidos");
+        }
+      })
       .catch((error) => console.error("Error al cargar productos:", error));
   }, []);
-
 
   // Gestionamos el cambio de archivo
   const handleImageChange = (event) => {
     setFile(event.target.files[0]);
   };
 
-
+  // Subimos la imagen seleccionada
   // Subimos la imagen seleccionada
   const subirImg = async () => {
     if (file) {
       const formData = new FormData();
       formData.append("image", file);
-
       try {
         const response = await fetch("http://localhost:5000/upload", {
           method: "POST",
@@ -40,11 +48,12 @@ export const GestionProductos = () => {
 
         const data = await response.json();
         console.log("Archivo subido", data);
-        return data.filename;
+        return data.filename; // Asegúrate de que 'filename' es la clave que devuelve el backend
       } catch (error) {
         console.error("Error al subir la imagen:", error);
       }
     }
+    return null; // Si no hay archivo, retorna null
   };
 
   // Metodo para guardar un producto
@@ -75,7 +84,15 @@ export const GestionProductos = () => {
         const addedProduct = await response.json();
         setProductos([...productos, addedProduct]);
         alert("Producto agregado exitosamente");
-        setProducto({ nombre: "", precio: "", imagen: "" });
+        setProducto({
+          nombre: "",
+          precio: "",
+          imagen: "",
+          descripcion: "",
+          color: "",
+          talla: "",
+          material: "",
+        });
         setImagenCargada(false);
       } else {
         alert("Error al agregar producto");
@@ -86,7 +103,6 @@ export const GestionProductos = () => {
     }
   };
 
-
   // Metodo para modificar un producto
   const handleModificarProduct = (id) => {
     const productoParaEditar = productos.find((prod) => prod.id === id);
@@ -95,50 +111,68 @@ export const GestionProductos = () => {
       nombre: productoParaEditar.nombre,
       precio: productoParaEditar.precio,
       imagen: productoParaEditar.imagen,
+      descripcion: productoParaEditar.descripcion,
+      color: productoParaEditar.color,
+      talla: productoParaEditar.talla,
+      material: productoParaEditar.material,
     });
   };
 
-
   // Metodo para actualizar un producto
-  const handleActualizarProducto = async (event) => {
-    event.preventDefault();
+  // Metodo para actualizar un producto
+  // Metodo para actualizar un producto
+const handleActualizarProducto = async (event) => {
+  event.preventDefault();
 
-    if (!producto.nombre || !producto.precio || !producto.imagen) {
-      alert("Por favor, completa todos los campos");
-      return;
-    }
+  if (!producto.nombre || !producto.precio) {
+    alert("Por favor, completa todos los campos");
+    return;
+  }
 
-    try {
-      const response = await fetch(
-        `http://localhost:3000/productos/${productoEditando.id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(producto),
-        }
-      );
+  // Si no se seleccionó una nueva imagen, mantenemos la imagen anterior
+  let imagenFinal = producto.imagen;
 
-      if (response.ok) {
-        const updatedProduct = await response.json();
-        setProductos(
-          productos.map((prod) =>
-            prod.id === updatedProduct.id ? updatedProduct : prod
-          )
-        );
-        alert("Producto actualizado exitosamente");
-        setProductoEditando(null);
-        setProducto({ nombre: "", precio: "", imagen: "" });
-        setImagenCargada(false);
-      } else {
-        alert("Error al actualizar producto");
+  // Si se seleccionó una nueva imagen, la subimos
+  if (file) {
+    imagenFinal = await subirImg();  // 'file' es el archivo de la imagen que el usuario seleccionó
+  }
+
+  const productoConImg = {
+    ...producto,
+    imagen: imagenFinal,  // Guardamos el nombre de la imagen o la URL de la imagen aquí
+  };
+
+  try {
+    const response = await fetch(
+      `http://localhost:3000/productos/${productoEditando.id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(productoConImg),
       }
-    } catch (error) {
-      console.error("Error al actualizar producto:", error);
+    );
+
+    if (response.ok) {
+      const updatedProduct = await response.json();
+      setProductos(
+        productos.map((prod) =>
+          prod.id === updatedProduct.id ? updatedProduct : prod
+        )
+      );
+      alert("Producto actualizado exitosamente");
+      setProductoEditando(null);
+      setProducto({ nombre: "", precio: "", imagen: "", descripcion: "", color: "", talla: "", material: "" });
+      setImagenCargada(false);
+    } else {
       alert("Error al actualizar producto");
     }
-  };
+  } catch (error) {
+    console.error("Error al actualizar producto:", error);
+    alert("Error al actualizar producto");
+  }
+};
 
 
   // Metodo para eliminar un producto
@@ -146,16 +180,18 @@ export const GestionProductos = () => {
     console.log(id);
     console.log(imagenEliminar);
     try {
-      const responceImg = await fetch(
-        `http://localhost:5000/delete/${imagenEliminar}`,
-        {
-          method: "DELETE",
-        }
-      );
+      if (imagenEliminar) {
+        const responceImg = await fetch(
+          `http://localhost:5000/delete/${imagenEliminar}`,
+          {
+            method: "DELETE",
+          }
+        );
 
-      if (!responceImg.ok) {
-        alert("Error al eliminar imagen");
-        return;
+        if (!responceImg.ok) {
+          alert("Error al eliminar imagen");
+          return;
+        }
       }
 
       const response = await fetch(`http://localhost:3000/productos/${id}`, {
@@ -209,6 +245,60 @@ export const GestionProductos = () => {
               }
             />
           </div>
+          <div>
+            <label htmlFor="descripcion" className="form-label">
+              Descripción
+            </label>
+            <textarea
+              className="form-control mb-2"
+              id="descripcion"
+              rows="3"
+              value={producto.descripcion}
+              onChange={(e) =>
+                setProducto({ ...producto, descripcion: e.target.value })
+              }
+            ></textarea>
+          </div>
+          <div>
+            <label htmlFor="color" className="form-label">
+              Color
+            </label>
+            <input
+              type="text"
+              id="color"
+              className="form-control mb-2"
+              value={producto.color}
+              onChange={(e) =>
+                setProducto({ ...producto, color: e.target.value })
+              }
+            />
+          </div>
+          <div>
+            <label htmlFor="talla" className="form-label">
+              Talla
+            </label>
+            <input
+              type="text"
+              id="talla"
+              className="form-control mb-2"
+              value="Talla única"
+              disabled
+            />
+          </div>
+          <div>
+            <label htmlFor="material" className="form-label">
+              Material
+            </label>
+            <input
+              type="text"
+              id="material"
+              className="form-control mb-2"
+              value={producto.material}
+              onChange={(e) =>
+                setProducto({ ...producto, material: e.target.value })
+              }
+            />
+          </div>
           <div className="mb-3">
             <label htmlFor="imagen" className="form-label">
               Imagen
@@ -216,7 +306,7 @@ export const GestionProductos = () => {
             <input
               type="file"
               id="imagen"
-              className="form-control"
+              className="form-control mb-2"
               onChange={handleImageChange}
             />
           </div>
@@ -231,6 +321,9 @@ export const GestionProductos = () => {
               <th>ID</th>
               <th>Nombre</th>
               <th>Precio</th>
+              <th>Descripción</th>
+              <th>Color</th>
+              <th>Talla</th>
               <th>Imagen</th>
               <th>Eliminar</th>
               <th>Modificar</th>
@@ -242,6 +335,9 @@ export const GestionProductos = () => {
                 <td>{prod.id}</td>
                 <td>{prod.nombre}</td>
                 <td>${prod.precio}</td>
+                <td>{prod.descripcion}</td>
+                <td>{prod.color}</td>
+                <td>{prod.talla}</td>
                 <td>
                   {prod.imagen && (
                     <img

@@ -3,12 +3,7 @@ import { useForm } from "react-hook-form";
 
 export const Login = () => {
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-
+  const { register, handleSubmit, formState: { errors },} = useForm();
 
   const login = async (data) => {
     try {
