@@ -314,19 +314,21 @@ const handleActualizarProducto = async (event) => {
             {productoEditando ? "Actualizar Producto" : "Guardar Producto"}
           </button>
         </form>
-
-        <table className="table table-striped mt-4">
+        <hr className="mt-5"></hr>
+        <table className="table table-striped mt-4 table-responsive">
+          
+          <caption className="text-center">Productos</caption>
           <thead>
             <tr>
-              <th>ID</th>
-              <th>Nombre</th>
-              <th>Precio</th>
-              <th>Descripción</th>
-              <th>Color</th>
-              <th>Talla</th>
-              <th>Imagen</th>
-              <th>Eliminar</th>
-              <th>Modificar</th>
+              <th scope="col">ID</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Precio</th>
+              <th scope="col">Descripción</th>
+              <th scope="col">Color</th>
+              <th scope="col">Talla</th>
+              <th scope="col">Imagen</th>
+              <th scope="col">Eliminar</th> 
+              <th scope="col">Modificar</th>
             </tr>
           </thead>
           <tbody>
@@ -334,8 +336,8 @@ const handleActualizarProducto = async (event) => {
               <tr key={prod.id}>
                 <td>{prod.id}</td>
                 <td>{prod.nombre}</td>
-                <td>${prod.precio}</td>
-                <td>{prod.descripcion}</td>
+                <td>{prod.precio}€</td>
+                <td className="w-25">{prod.descripcion}</td>
                 <td>{prod.color}</td>
                 <td>{prod.talla}</td>
                 <td>
