@@ -9,6 +9,7 @@ export const Inicio = () => {
     () => JSON.parse(localStorage.getItem("resenas")) || []
   );
   const [nombre, setNombre] = useState("");
+  const [titulo, setTitulo] = useState("");
   const [comentario, setComentario] = useState("");
   const [valoracion, setValoracion] = useState(1);
 
@@ -23,13 +24,15 @@ export const Inicio = () => {
         nombre: usuario?.name || nombre,
         comentario,
         valoracion,
+        titulo,
       };
       setResenas((prev) => [...prev, nuevaResena]);
       setNombre("");
       setComentario("");
       setValoracion(1);
+      setTitulo("");
     },
-    [usuario, nombre, comentario, valoracion]
+    [usuario, nombre, comentario, valoracion, titulo]
   );
 
   const eliminarResena = useCallback((index) => {
@@ -74,6 +77,15 @@ export const Inicio = () => {
                   />
                 </div>
                 <div className="mb-3">
+                  <label className="form-label">Título</label>
+                  <input
+                    type="text"
+                    className="form-control custom-input mb-2"
+                    value={titulo}
+                    onChange={(e) => setTitulo(e.target.value)}
+                    required
+                  />
+                
                   <label className="form-label">Comentario</label>
                   <textarea
                     className="form-control custom-input"
@@ -126,6 +138,8 @@ export const Inicio = () => {
                       ></i>
                     ))}
                   </p>
+                  <hr></hr>
+                  <h5 className="text-muted"><strong>{reseña.titulo}</strong></h5>
                   <p className="text-muted">{reseña.comentario}</p>
                   {usuario?.tipo === "admin" && (
                     <button

@@ -27,6 +27,20 @@
       "password": "1234",
       "tipo": "admin",
       "id": "XFVZOgT"
+    },
+    {
+      "name": "Juan",
+      "email": "juan@gmail.com",
+      "password": "123",
+      "tipo": "usuario",
+      "id": "P9LE2hX"
+    },
+    {
+      "name": "Tomás",
+      "email": "tomas@gmail.com",
+      "password": "123",
+      "tipo": "usuario",
+      "id": "507-LUY"
     }
   ],
   "productos": [

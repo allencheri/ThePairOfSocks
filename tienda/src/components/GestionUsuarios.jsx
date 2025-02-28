@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./css/usuarios.css";
 
 export const GestionUsuarios = () => {
-
   const [usuario, setUsuario] = useState({
     name: "",
     email: "",
